@@ -45,7 +45,7 @@ namespace ClubManagementServices.Common
 
                     return new FireBaseFile
                     {
-                        FileName = fileUpload.FileName,
+                        FileName = fileName,
                         URL = result
                     };
                 }
