@@ -14,7 +14,7 @@ namespace ClubManagementRepositories.Models
         public string? GradeName { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-
+        public DateTime? CreateAt { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }
 }

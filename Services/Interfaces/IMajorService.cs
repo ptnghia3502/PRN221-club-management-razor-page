@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubManagementRepositories.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace ClubManagementServices.Interfaces
 {
     public interface IMajorService
     {
+        Task<List<Major>> GetAllMajor();
     }
 }

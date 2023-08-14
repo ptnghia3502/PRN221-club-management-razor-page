@@ -10,6 +10,7 @@ namespace ClubManagementRepositories.Models
         public Guid? ActivityId { get; set; }
         public DateTime? JoinedDate { get; set; }
         public bool? IsJoined { get; set; }
+        public DateTime? CreateAt { get; set; }
 
         public virtual ClubActivity? Activity { get; set; }
         public virtual Membership? Membership { get; set; }

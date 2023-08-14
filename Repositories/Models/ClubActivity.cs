@@ -19,7 +19,7 @@ namespace ClubManagementRepositories.Models
         public DateTime? EndDate { get; set; }
         public string? Location { get; set; }
         public string? Status { get; set; }
-
+        public DateTime? CreateAt { get; set; }
         public virtual Club? Club { get; set; }
         public virtual ICollection<Participant> Participants { get; set; }
     }

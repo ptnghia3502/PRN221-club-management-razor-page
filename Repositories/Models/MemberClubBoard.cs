@@ -12,6 +12,7 @@ namespace ClubManagementRepositories.Models
         public DateTime? ToDate { get; set; }
         public string? Role { get; set; }
         public string? Status { get; set; }
+        public DateTime? CreateAt { get; set; }
 
         public virtual ClubBoard? ClubBoard { get; set; }
         public virtual Membership? Membership { get; set; }

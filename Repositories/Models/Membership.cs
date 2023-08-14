@@ -18,6 +18,7 @@ namespace ClubManagementRepositories.Models
         public DateTime? JoinDate { get; set; }
         public DateTime? OutDate { get; set; }
         public string? Status { get; set; }
+        public DateTime? CreateAt { get; set; }
 
         public virtual Club? Club { get; set; }
         public virtual Student? Student { get; set; }

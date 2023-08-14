@@ -18,7 +18,9 @@ namespace ClubManagementRepositories.Models
         public string? Purpose { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? Status { get; set; }
+        public string? LogoName { get; set; }
         public string? LogoImageUrl { get; set; }
+        public DateTime? CreateAt { get; set; }
 
         public virtual ICollection<ClubActivity> ClubActivities { get; set; }
         public virtual ICollection<ClubBoard> ClubBoards { get; set; }
