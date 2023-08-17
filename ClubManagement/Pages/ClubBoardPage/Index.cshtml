@@ -1,0 +1,42 @@
+﻿@page
+@model ClubManagement.Pages.ClubBoardPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" asp-route-id="@Model.ClubId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubBoard[0].ClubBoardName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubBoard[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ClubBoard) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClubBoardName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ClubBoardId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ClubBoardId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ClubBoardId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

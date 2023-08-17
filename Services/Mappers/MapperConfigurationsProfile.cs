@@ -19,6 +19,19 @@ namespace ClubManagementServices.Mappers
             CreateMap<Student, StudentUpdateView>()
                 .ForMember(dest => dest.Avatar, act => act.Ignore())
                 .ReverseMap();
+
+            CreateMap<ClubView, Club>().ReverseMap();
+            CreateMap<Club, ClubCreateView>()
+                //.ForMember(dest=>dest.ChairmanEmail,act=>act.Ignore())
+                .ReverseMap();
+            CreateMap<Club, ClubUpdateView>()
+                .ForMember(dest => dest.LogoImage, act => act.Ignore())               
+                .ReverseMap();
+
+            CreateMap<ClubBoardView, ClubBoard>().ReverseMap();
+            CreateMap<ClubBoardCreateView,ClubBoard>().ReverseMap();
+
+            CreateMap<MembershipView,Membership>().ReverseMap();
         }
     }
 }

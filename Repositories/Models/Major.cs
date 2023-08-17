@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClubManagementRepositories.Models
 {
-    public partial class Major
+    public partial class Major:BaseEntity
     {
         public Major()
         {
@@ -12,7 +12,6 @@ namespace ClubManagementRepositories.Models
 
         public Guid MajorId { get; set; }
         public string? MajorName { get; set; }
-        public DateTime? CreateAt { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }
 }

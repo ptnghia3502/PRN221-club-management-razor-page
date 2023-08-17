@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClubManagementRepositories.Models
 {
-    public partial class Student
+    public partial class Student:BaseEntity
     {
         public Student()
         {
@@ -22,7 +22,6 @@ namespace ClubManagementRepositories.Models
         public string? AvatarName { get; set; }
         public string? AvatarUrl { get; set; }
         public string? Status { get; set; } = "Active";
-        public DateTime? CreateAt { get; set; }
 
         public virtual Grade? Grade { get; set; }
         public virtual Major? Major { get; set; }

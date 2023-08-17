@@ -1,0 +1,66 @@
+﻿@page
+@model ClubManagement.Pages.ClubPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:100px;text-align:center;">
+                @Html.DisplayNameFor(model => model.Club[0].LogoImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].ClubName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Purpose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Club) {
+        <tr>
+                <td style="width:100px;">
+                    <img src="@item.LogoImageUrl" style="width:90px;height:100px" />
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClubName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purpose)
+            </td>
+            <td>
+                @item.CreatedDate!.Value.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ClubId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ClubId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ClubId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

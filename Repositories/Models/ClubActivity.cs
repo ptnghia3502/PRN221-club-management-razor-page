@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClubManagementRepositories.Models
 {
-    public partial class ClubActivity
+    public partial class ClubActivity:BaseEntity
     {
         public ClubActivity()
         {

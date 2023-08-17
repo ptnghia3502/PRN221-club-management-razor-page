@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubManagementServices.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace ClubManagementServices.Interfaces
 {
     public interface IMembershipService
     {
+        Task<List<MembershipView>> GetAllMemberByClubId(Guid clubid);
+        Task<bool> CreateMember(MembershipCreateView createView);
     }
 }

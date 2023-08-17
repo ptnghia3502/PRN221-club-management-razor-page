@@ -41,6 +41,9 @@ namespace ClubManagementRepositories.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LogoImageUrl")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -83,6 +86,9 @@ namespace ClubManagementRepositories.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Location")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -121,6 +127,9 @@ namespace ClubManagementRepositories.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Status")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -147,6 +156,9 @@ namespace ClubManagementRepositories.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -162,6 +174,9 @@ namespace ClubManagementRepositories.Migrations
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MajorName")
                         .HasMaxLength(255)
@@ -185,6 +200,9 @@ namespace ClubManagementRepositories.Migrations
 
                     b.Property<DateTime?>("FromDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("MembershipId")
                         .HasColumnType("uniqueidentifier");
@@ -224,6 +242,9 @@ namespace ClubManagementRepositories.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("JoinDate")
                         .HasColumnType("datetime2");
 
@@ -256,6 +277,9 @@ namespace ClubManagementRepositories.Migrations
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool?>("IsJoined")
                         .HasColumnType("bit");
@@ -303,6 +327,9 @@ namespace ClubManagementRepositories.Migrations
 
                     b.Property<Guid?>("GradeId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("MajorId")
                         .HasColumnType("uniqueidentifier");
