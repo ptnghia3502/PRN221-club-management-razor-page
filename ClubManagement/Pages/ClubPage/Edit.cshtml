@@ -14,6 +14,8 @@
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Club.ClubId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Club.CreatedDate" />
             <div class="form-group">
                 <label asp-for="Club.ClubName" class="control-label"></label>
                 <input asp-for="Club.ClubName" class="form-control" />

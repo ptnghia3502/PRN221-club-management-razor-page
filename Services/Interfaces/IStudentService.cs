@@ -16,6 +16,7 @@ namespace ClubManagementServices.Interfaces
         Task<StudentUpdateView> GetUpdateInfor(Guid id);
 
         Task<bool> Update(StudentUpdateView updateDTO);
+        Task<StudentView> LoginAsync(string email, string studentCardId);
 
     }
 }

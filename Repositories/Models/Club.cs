@@ -16,7 +16,7 @@ namespace ClubManagementRepositories.Models
         public string? ClubName { get; set; }
         public string? Description { get; set; }
         public string? Purpose { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public string? Status { get; set; }
         public string? LogoName { get; set; }
         public string? LogoImageUrl { get; set; }

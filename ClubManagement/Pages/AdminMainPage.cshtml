@@ -1,0 +1,22 @@
+﻿@page
+@model ClubManagement.Pages.AdminMainPageModel
+
+<div class="text-center mb-4">
+    <h1>Hello Admin</h1>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-primary btn-block" href="/StudentPage/Index">Manage Students</a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary btn-block" href="/ClubPage/Index">Manage Clubs</a>
+        </div>
+        <div class="col-md-4">
+            <form asp-page="/Index" method="post">
+                <button type="submit" class="btn btn-danger btn-block">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>

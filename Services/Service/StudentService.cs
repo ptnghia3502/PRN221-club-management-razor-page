@@ -87,5 +87,15 @@ namespace ClubManagementServices.Service
             _unitOfWork.StudentRepository.Update(student);
             return await _unitOfWork.SaveChangeAsync() > 0;
         }
+
+        public async Task<StudentView> LoginAsync(string email, string studentCardId)
+        {
+            var student = await _unitOfWork.StudentRepository.FindByField(
+                    x => x.Email == email && x.StudentCardId == studentCardId);
+
+            var result = _mapper.Map<StudentView>(student);
+            return result;
+        }
+
     }
 }
