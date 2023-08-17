@@ -53,5 +53,12 @@ namespace ClubManagementServices.Service
             var result= _mapper.Map<List<MembershipView>>(members);
             return result;
         }
+
+        public async Task<MembershipView> GetMemberById(Guid membershipId)
+        {
+            var member = await _unitOfWork.MembershipRepository.FindByField(x => x.MembershipId == membershipId);
+            var result = _mapper.Map<MembershipView>(member);
+            return result;
+        }
     }
 }

@@ -38,5 +38,26 @@ namespace ClubManagementServices.Service
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ClubBoardView> GetClubBoardById(Guid id)
+        {
+            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == id);
+            var result = _mapper.Map<ClubBoardView>(clubBoard);
+            return result;
+        }
+
+        public async Task<bool> UpdateClubBoard(ClubBoardUpdateView updateDTO)
+        {
+            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == updateDTO.ClubBoardId);
+            if (clubBoard == null)
+            {
+                return false;
+            }
+
+            clubBoard = _mapper.Map(updateDTO, clubBoard);
+
+            _unitOfWork.ClubBoardRepository.Update(clubBoard);
+            return await _unitOfWork.SaveChangeAsync() > 0;
+        }
     }
 }

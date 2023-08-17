@@ -13,6 +13,8 @@ namespace ClubManagementServices.Interfaces
         Task<List<ClubBoardView>> GetAllClubBoardByClubId(Guid clubId);
         Task<ClubBoardView> GetClubBoardByClubId(Guid id);
         Task<bool> CreateClubBoard(ClubBoardCreateView createDTO);
+        Task<bool> UpdateClubBoard(ClubBoardUpdateView updateDTO);
+        Task<ClubBoardView> GetClubBoardById(Guid id);
 
     }
 }

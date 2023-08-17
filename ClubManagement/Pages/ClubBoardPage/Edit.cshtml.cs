@@ -7,40 +7,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClubManagementRepositories.Models;
+using ClubManagementServices.Interfaces;
+using ClubManagementServices.Service;
+using ClubManagementServices.ViewModels;
 
 namespace ClubManagement.Pages.ClubBoardPage
 {
     public class EditModel : PageModel
     {
-        private readonly ClubManagementRepositories.Models.ClubManagementContext _context;
+        private readonly IClubBoardService _clubBoardService;
 
-        public EditModel(ClubManagementRepositories.Models.ClubManagementContext context)
+        public EditModel(IClubBoardService clubBoardService)
         {
-            _context = context;
+            _clubBoardService = clubBoardService;
         }
 
         [BindProperty]
-        public ClubBoard ClubBoard { get; set; } = default!;
+        public ClubBoardUpdateView ClubBoard { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.ClubBoards == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var clubboard =  await _context.ClubBoards.FirstOrDefaultAsync(m => m.ClubBoardId == id);
-            if (clubboard == null)
+            var clubBoard = await _clubBoardService.GetClubBoardById(id.Value);
+            if (clubBoard == null)
             {
                 return NotFound();
             }
-            ClubBoard = clubboard;
-           ViewData["ClubId"] = new SelectList(_context.Clubs, "ClubId", "ClubId");
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -48,30 +48,10 @@ namespace ClubManagement.Pages.ClubBoardPage
                 return Page();
             }
 
-            _context.Attach(ClubBoard).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClubBoardExists(ClubBoard.ClubBoardId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _clubBoardService.UpdateClubBoard(ClubBoard);
 
             return RedirectToPage("./Index");
         }
 
-        private bool ClubBoardExists(Guid id)
-        {
-          return (_context.ClubBoards?.Any(e => e.ClubBoardId == id)).GetValueOrDefault();
-        }
     }
 }

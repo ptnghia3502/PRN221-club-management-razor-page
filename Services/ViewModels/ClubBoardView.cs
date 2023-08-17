@@ -19,4 +19,12 @@ namespace ClubManagementServices.ViewModels
         public string? ClubBoardName { get; set; }
         public Guid? ClubId { get; set; }
     }
+
+    public class ClubBoardUpdateView
+    {
+        public Guid ClubBoardId { get; set; }
+        public string? ClubBoardName { get; set; }
+        public Guid? ClubId { get; set; }
+        public string? Status { get; set; }
+    }
 }

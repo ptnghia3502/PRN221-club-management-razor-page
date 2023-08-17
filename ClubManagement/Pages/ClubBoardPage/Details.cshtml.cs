@@ -6,28 +6,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ClubManagementRepositories.Models;
+using ClubManagementServices.Interfaces;
+using ClubManagementServices.ViewModels;
 
 namespace ClubManagement.Pages.ClubBoardPage
 {
     public class DetailsModel : PageModel
     {
-        private readonly ClubManagementRepositories.Models.ClubManagementContext _context;
+        private readonly IClubBoardService _clubBoardService;
 
-        public DetailsModel(ClubManagementRepositories.Models.ClubManagementContext context)
+        public DetailsModel(IClubBoardService clubBoardService)
         {
-            _context = context;
+            _clubBoardService = clubBoardService;
         }
 
-      public ClubBoard ClubBoard { get; set; } = default!; 
+        public ClubBoardView ClubBoard { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.ClubBoards == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var clubboard = await _context.ClubBoards.FirstOrDefaultAsync(m => m.ClubBoardId == id);
+            var clubboard = await _clubBoardService.GetClubBoardById(id.Value);
             if (clubboard == null)
             {
                 return NotFound();

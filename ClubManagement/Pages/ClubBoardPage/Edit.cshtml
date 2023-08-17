@@ -14,30 +14,17 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ClubBoard.ClubBoardId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClubBoard.ClubId" />
             <div class="form-group">
                 <label asp-for="ClubBoard.ClubBoardName" class="control-label"></label>
                 <input asp-for="ClubBoard.ClubBoardName" class="form-control" />
                 <span asp-validation-for="ClubBoard.ClubBoardName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ClubBoard.ClubId" class="control-label"></label>
-                <select asp-for="ClubBoard.ClubId" class="form-control" asp-items="ViewBag.ClubId"></select>
-                <span asp-validation-for="ClubBoard.ClubId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="ClubBoard.Status" class="control-label"></label>
                 <input asp-for="ClubBoard.Status" class="form-control" />
                 <span asp-validation-for="ClubBoard.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClubBoard.CreateAt" class="control-label"></label>
-                <input asp-for="ClubBoard.CreateAt" class="form-control" />
-                <span asp-validation-for="ClubBoard.CreateAt" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="ClubBoard.IsDeleted" /> @Html.DisplayNameFor(model => model.ClubBoard.IsDeleted)
-                </label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

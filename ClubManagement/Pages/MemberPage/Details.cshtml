@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Membership.CardMemberUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.CardMemberUrl)
+            <img src="@Model.Membership.CardMemberUrl" style="width:90px;" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Membership.JoinDate)
@@ -36,28 +36,10 @@
             @Html.DisplayFor(model => model.Membership.Status)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Membership.Club)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.Club.ClubId)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Membership.Student)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.Student.StudentId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Membership.CreateAt)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.CreateAt)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Membership.IsDeleted)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.IsDeleted)
+            @Html.DisplayFor(model => model.Membership.Student.StudentName)
         </dd>
     </dl>
 </div>

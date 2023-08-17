@@ -13,11 +13,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Membership[0].Student)
+            <th style="width:100px;text-align:center;">
+                @Html.DisplayNameFor(model => model.Membership[0].CardMemberUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Membership[0].CardMemberUrl)
+                @Html.DisplayNameFor(model => model.Membership[0].Student)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Membership[0].JoinDate)
@@ -35,11 +35,11 @@
     <tbody>
 @foreach (var item in Model.Membership) {
         <tr>
+                <td style="width:100px;">
+                    <img src="@item.CardMemberUrl" style="width:90px;height:100px" />
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Student!.StudentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CardMemberUrl)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.JoinDate)
