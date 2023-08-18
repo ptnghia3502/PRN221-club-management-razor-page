@@ -10,5 +10,6 @@ namespace ClubManagementServices.Interfaces
     public interface IMemberClubBoardService
     {
         Task<List<MemberClubBoardView>> GetAllMemberInClubBoardByClubBoardId(Guid clubId);
+        Task<bool> AddMemberToClubBoard(MemberClubBoardCreateView createView);
     }
 }

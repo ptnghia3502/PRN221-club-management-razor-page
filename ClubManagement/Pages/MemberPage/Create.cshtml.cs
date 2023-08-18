@@ -37,5 +37,7 @@ namespace ClubManagement.Pages.MemberPage
 
             return RedirectToPage("./Index");
         }
+
+
     }
 }

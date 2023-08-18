@@ -1,0 +1,38 @@
+﻿@page
+@model ClubManagement.Pages.ClubBoardPage.AddNewMemberClubBoardModel
+@{
+    ViewData["Title"] = "Add New Member to Club Board";
+}
+
+<h1>Add New Member to Club Board</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="MemberClubBoard.ClubBoardId" type="hidden" value="@Model.ClubBoardId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="MemberClubBoard.MembershipId" type="hidden" value="0373C986-485F-4F03-B439-79B9A496F128" />
+
+            <div class="form-group">
+                <label asp-for="MemberClubBoard.FromDate" class="control-label"></label>
+                <input asp-for="MemberClubBoard.FromDate" class="form-control" type="date" required />
+                <span asp-validation-for="MemberClubBoard.FromDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MemberClubBoard.Role" class="control-label"></label>
+                <input asp-for="MemberClubBoard.Role" class="form-control" required />
+                <span asp-validation-for="MemberClubBoard.Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Details" asp-route-id="@Model.ClubBoardId">Back to Club Board Details</a>
+</div>
