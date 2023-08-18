@@ -56,7 +56,7 @@ namespace ClubManagementServices.Service
 
         public async Task<MembershipView> GetMemberById(Guid membershipId)
         {
-            var member = await _unitOfWork.MembershipRepository.FindByField(x => x.MembershipId == membershipId);
+            var member = await _unitOfWork.MembershipRepository.FindByField(x => x.MembershipId == membershipId, x => x.Student!);
             var result = _mapper.Map<MembershipView>(member);
             return result;
         }

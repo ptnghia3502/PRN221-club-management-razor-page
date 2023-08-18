@@ -14,13 +14,16 @@ namespace ClubManagement.Pages.ClubBoardPage
     public class DetailsModel : PageModel
     {
         private readonly IClubBoardService _clubBoardService;
+        private readonly IMemberClubBoardService _memberClubBoardService;
 
-        public DetailsModel(IClubBoardService clubBoardService)
+        public DetailsModel(IClubBoardService clubBoardService, IMemberClubBoardService memberClubBoardService)
         {
             _clubBoardService = clubBoardService;
+            _memberClubBoardService = memberClubBoardService;
         }
 
-        public ClubBoardView ClubBoard { get; set; } = default!; 
+        public ClubBoardView ClubBoard { get; set; } = default!;
+        public IList<MemberClubBoardView> MemberClubBoard{ get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -30,6 +33,7 @@ namespace ClubManagement.Pages.ClubBoardPage
             }
 
             var clubboard = await _clubBoardService.GetClubBoardById(id.Value);
+            var members = await _memberClubBoardService.GetAllMemberInClubBoardByClubBoardId(id.Value);
             if (clubboard == null)
             {
                 return NotFound();
@@ -37,6 +41,7 @@ namespace ClubManagement.Pages.ClubBoardPage
             else 
             {
                 ClubBoard = clubboard;
+                MemberClubBoard = members;
             }
             return Page();
         }

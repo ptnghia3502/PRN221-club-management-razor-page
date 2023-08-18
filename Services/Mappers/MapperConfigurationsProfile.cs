@@ -33,6 +33,8 @@ namespace ClubManagementServices.Mappers
 
             CreateMap<MembershipView,Membership>().ReverseMap();
 
+            CreateMap<MemberClubBoardView, MemberClubBoard>().ReverseMap();
+
         }
     }
 }

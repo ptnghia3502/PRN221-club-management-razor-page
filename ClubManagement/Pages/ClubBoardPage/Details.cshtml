@@ -29,3 +29,30 @@
     <a asp-page="./Edit" asp-route-id="@Model.ClubBoard?.ClubBoardId">Edit</a> |
     <a asp-page="./Index" asp-route-id="@Model.ClubBoard?.ClubId">Back to List</a>
 </div>
+
+</br>
+<div>
+    <h4>Members in Club Board</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Member Card</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in Model.MemberClubBoard)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => member.Membership!.CardMemberUrl)</td>
+                    <td>@Html.DisplayFor(model => member.Membership!.Student!.StudentName)</td>
+                    <td>@Html.DisplayFor(model => member.Membership!.Student!.Birthday)</td>
+                    <td>@Html.DisplayFor(model => member.Role)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
