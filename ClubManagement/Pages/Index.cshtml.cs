@@ -40,6 +40,7 @@ namespace ClubManagement.Pages
             {
                 HttpContext.Session.SetString("isAdmin", "false");
                 HttpContext.Session.SetString("isLogin", "true");
+                HttpContext.Session.SetString("studentId", account!.StudentId.ToString());
                 return RedirectToPage("./StudentMainPage");
             }
             

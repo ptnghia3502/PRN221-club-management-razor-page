@@ -1,0 +1,45 @@
+﻿@page
+@model ClubManagement.Pages.StudentClubPage.IndexModel
+@{
+    ViewData["Title"] = "Clubs have been joined";
+}
+
+<h1>Clubs have been joined</h1>
+
+@if (Model.Memberships.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:100px;text-align:center;">
+                    Club Logo
+                </th>
+                <th>Club Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var membership in Model.Memberships)
+            {
+                <tr>
+                    <td style="width:100px;">
+                        <img src="@membership.Club!.LogoImageUrl" style="width:90px;height:100px" />
+                    </td>
+                    <td>@membership.Club!.ClubName</td>
+                    <td>@membership.Club!.Description</td>
+                    <td>@membership.Club!.Status</td>
+                    <td>
+                        <a asp-page="./ViewMembersClub" asp-route-id="@membership.Club!.ClubId">View Members</a> |
+                        <a asp-page="./ViewActivityClub" asp-route-id="@membership.Club!.ClubId">View Activities</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You have joined no clubs!</p>
+}

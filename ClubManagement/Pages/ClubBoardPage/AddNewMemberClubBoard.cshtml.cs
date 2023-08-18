@@ -4,6 +4,8 @@ using ClubManagementServices.Service;
 using ClubManagementServices.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClubManagement.Pages.ClubBoardPage
 {
@@ -21,9 +23,10 @@ namespace ClubManagement.Pages.ClubBoardPage
         [BindProperty]
         public Guid ClubBoardId { get; set; } = default;
 
-        public IActionResult OnGet(Guid id)
+        public async Task<IActionResult> OnGet(Guid id)
         {
             ClubBoardId = id;
+            ViewData["MembershipId"] = new SelectList(await _memberClubBoardService.GetAllMemberOutClubBoardByClubBoardId(id), "MembershipId", "StudentName");
             return Page();
         }
 
@@ -34,7 +37,7 @@ namespace ClubManagement.Pages.ClubBoardPage
         public async Task<IActionResult> OnPostAsync()
         {
             await _memberClubBoardService.AddMemberToClubBoard(MemberClubBoard);
-            return RedirectToPage("./Details", new { id = ClubBoardId });
+            return RedirectToPage("./Details", new { id = MemberClubBoard.ClubBoardId });
         }
     }
 }

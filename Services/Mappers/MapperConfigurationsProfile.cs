@@ -35,6 +35,10 @@ namespace ClubManagementServices.Mappers
 
             CreateMap<MemberClubBoardView, MemberClubBoard>().ReverseMap();
 
+            CreateMap<MemberOption,Membership>()
+                .ForPath(x=>x.Student!.StudentName, op=>op.MapFrom(src=>src.StudentName))
+                .ReverseMap();
+
         }
     }
 }

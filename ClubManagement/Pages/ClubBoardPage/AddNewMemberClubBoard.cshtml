@@ -11,15 +11,15 @@
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input asp-for="MemberClubBoard.ClubBoardId" type="hidden" value="@Model.ClubBoardId" />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="MemberClubBoard.MembershipId" type="hidden" value="0373C986-485F-4F03-B439-79B9A496F128" />
-
             <div class="form-group">
-                <label asp-for="MemberClubBoard.FromDate" class="control-label"></label>
-                <input asp-for="MemberClubBoard.FromDate" class="form-control" type="date" required />
-                <span asp-validation-for="MemberClubBoard.FromDate" class="text-danger"></span>
+                <label asp-for="MemberClubBoard.MembershipId" class="control-label"></label>
+                <select asp-for="MemberClubBoard.MembershipId" class="form-control" asp-items="ViewBag.MembershipId"></select>
             </div>
-
+            <div class="form-group">
+                <label asp-for="MemberClubBoard.ToDate" class="control-label"></label>
+                <input asp-for="MemberClubBoard.ToDate" class="form-control" type="date" />
+                <span asp-validation-for="MemberClubBoard.ToDate" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="MemberClubBoard.Role" class="control-label"></label>
                 <input asp-for="MemberClubBoard.Role" class="form-control" required />

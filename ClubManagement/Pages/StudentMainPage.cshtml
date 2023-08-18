@@ -1,0 +1,19 @@
+﻿@page
+@model ClubManagement.Pages.StudentMainPageModel
+
+<div class="text-center mb-4">
+    <h1>Welcome to FPT Club Management</h1>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary btn-block" href="/StudentClubPage/Index">View Joined Clubs</a>
+        </div>
+        <div class="col-md-6">
+            <form asp-page="/Index" method="post">
+                <button type="submit" class="btn btn-danger btn-block">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>

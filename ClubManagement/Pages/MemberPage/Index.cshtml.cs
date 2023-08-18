@@ -27,10 +27,11 @@ namespace ClubManagement.Pages.MemberPage
         {
             ClubId = id;
             var result = await _membershipService.GetAllMemberByClubId(id);
-            if (result.Count>0)
+            /*if (result.Count>0)
             {
                 Membership = result;
-            }
+            }*/
+            Membership = result;
         }
     }
 }

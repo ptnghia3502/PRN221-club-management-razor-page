@@ -24,11 +24,11 @@ namespace ClubManagementServices.Service
 
         public async Task<bool> AddMemberToClubBoard(MemberClubBoardCreateView createView)
         {
-            var student = await _unitOfWork.StudentRepository.FindByField(x => x.Email == createView.Membership!.Student!.Email && x.IsDeleted == false);
-            if (student == null)
-            {
-                return false;
-            }
+            //var student = await _unitOfWork.StudentRepository.FindByField(x => x.Email == createView.Membership!.Student!.Email && x.IsDeleted == false);
+            //if (student == null)
+            //{
+            //    return false;
+            //}
 
             var memberClubBoard = new MemberClubBoard
             {
@@ -36,6 +36,7 @@ namespace ClubManagementServices.Service
                 ClubBoardId = createView.ClubBoardId,
                 MembershipId = createView.MembershipId,
                 FromDate = DateTime.Now,
+                ToDate=createView.ToDate,
                 Role = createView.Role,
                 Status = "Active"
 
@@ -46,8 +47,17 @@ namespace ClubManagementServices.Service
 
         public async Task<List<MemberClubBoardView>> GetAllMemberInClubBoardByClubBoardId(Guid clubBoardId)
         {
-            var members = await _unitOfWork.MembershipClubBoardRepository.FindListByField(x => x.IsDeleted == false, x => x.Membership!, x => x.Membership!.Student!);
+            var members = await _unitOfWork.MembershipClubBoardRepository.FindListByField(x => x.IsDeleted == false && x.ClubBoardId == clubBoardId, x => x.Membership!, x => x.Membership!.Student!);
             var result = _mapper.Map<List<MemberClubBoardView>>(members);
+            return result;
+        }
+
+        public async Task<List<MemberOption>> GetAllMemberOutClubBoardByClubBoardId(Guid clubBoardId)
+        {
+            var memberIn = await GetAllMemberInClubBoardByClubBoardId(clubBoardId);
+            var listId= memberIn.Select(x=>x.MembershipId).ToList();
+            var members = await _unitOfWork.MembershipRepository.FindListByField(x => !listId.Contains(x.MembershipId) && x.IsDeleted==false,x=>x.Student!);
+            var result = _mapper.Map<List<MemberOption>>(members);
             return result;
         }
     }

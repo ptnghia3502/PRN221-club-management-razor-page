@@ -12,5 +12,6 @@ namespace ClubManagementServices.Interfaces
         Task<List<MembershipView>> GetAllMemberByClubId(Guid clubid);
         Task<bool> CreateMember(MembershipCreateView createView);
         Task<MembershipView> GetMemberById(Guid membershipId);
+        Task<List<MembershipView>> GetAllClubsOfStudentHasJoined(Guid studentId);
     }
 }

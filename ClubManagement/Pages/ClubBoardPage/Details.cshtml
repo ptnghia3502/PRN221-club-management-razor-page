@@ -40,6 +40,8 @@
                 <th>Member Card</th>
                 <th>Name</th>
                 <th>Birthday</th>
+                <th>FromDate</th>
+                <th>ToDate</th>
                 <th>Role</th>
             </tr>
         </thead>
@@ -50,9 +52,12 @@
                     <td>@Html.DisplayFor(model => member.Membership!.CardMemberUrl)</td>
                     <td>@Html.DisplayFor(model => member.Membership!.Student!.StudentName)</td>
                     <td>@Html.DisplayFor(model => member.Membership!.Student!.Birthday)</td>
+                    <td>@Html.DisplayFor(model => member.FromDate)</td>
+                    <td>@Html.DisplayFor(model => member.ToDate)</td>
                     <td>@Html.DisplayFor(model => member.Role)</td>
                 </tr>
             }
+
         </tbody>
     </table>
 </div>

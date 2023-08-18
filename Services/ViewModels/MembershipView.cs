@@ -16,6 +16,7 @@ namespace ClubManagementServices.ViewModels
         public DateTime? OutDate { get; set; }
         public string? Status { get; set; }
         public virtual Student? Student { get; set; }
+        public virtual Club? Club { get; set; }
     }
 
     public class MembershipCreateView
@@ -31,5 +32,11 @@ namespace ClubManagementServices.ViewModels
         public Guid MembershipId { get; set; }
         public IFormFile? CardMemberUrl { get; set; }
         public string? Status { get;set; }
+    }
+
+    public class MemberOption
+    {
+        public Guid MembershipId { get; set; }
+        public string? StudentName { get; set; }
     }
 }
