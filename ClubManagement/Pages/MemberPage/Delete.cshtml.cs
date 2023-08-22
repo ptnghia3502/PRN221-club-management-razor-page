@@ -6,35 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ClubManagementRepositories.Models;
+using ClubManagementServices.Interfaces;
+using ClubManagementServices.ViewModels;
 
 namespace ClubManagement.Pages.MemberPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly ClubManagementRepositories.Models.ClubManagementContext _context;
 
-        public DeleteModel(ClubManagementRepositories.Models.ClubManagementContext context)
+        private readonly IMembershipService _membershipService;
+        public DeleteModel(IMembershipService membershipService)
         {
-            _context = context;
+            _membershipService = membershipService;
         }
 
         [BindProperty]
-      public Membership Membership { get; set; } = default!;
+        public MembershipView Membership { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.Memberships == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var membership = await _context.Memberships.FirstOrDefaultAsync(m => m.MembershipId == id);
-
+            var membership = await _membershipService.GetMemberById(id.Value);
             if (membership == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Membership = membership;
             }
@@ -43,20 +44,9 @@ namespace ClubManagement.Pages.MemberPage
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (id == null || _context.Memberships == null)
-            {
-                return NotFound();
-            }
-            var membership = await _context.Memberships.FindAsync(id);
-
-            if (membership != null)
-            {
-                Membership = membership;
-                _context.Memberships.Remove(Membership);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            var membership = await _membershipService.GetMemberById(id!.Value);
+            await _membershipService.Delete(id!.Value);
+            return RedirectToPage("./Index", new {id=membership.Club!.ClubId});
         }
     }
 }

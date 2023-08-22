@@ -35,7 +35,7 @@ namespace ClubManagement.Pages.MemberPage
         {
             await _membershipService.CreateMember(Membership);
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new {id=Membership.ClubId});
         }
 
 

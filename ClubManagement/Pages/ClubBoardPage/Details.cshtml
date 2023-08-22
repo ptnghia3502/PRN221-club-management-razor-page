@@ -37,7 +37,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Member Card</th>
+                <th style="width:100px;text-align:center;">Member Card</th>
                 <th>Name</th>
                 <th>Birthday</th>
                 <th>FromDate</th>
@@ -49,7 +49,9 @@
             @foreach (var member in Model.MemberClubBoard)
             {
                 <tr>
-                    <td>@Html.DisplayFor(model => member.Membership!.CardMemberUrl)</td>
+                    <td style="width:100px;">
+                        <img src="@member.Membership!.CardMemberUrl" style="width:90px;height:100px" />
+                    </td>
                     <td>@Html.DisplayFor(model => member.Membership!.Student!.StudentName)</td>
                     <td>@Html.DisplayFor(model => member.Membership!.Student!.Birthday)</td>
                     <td>@Html.DisplayFor(model => member.FromDate)</td>

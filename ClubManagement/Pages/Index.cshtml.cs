@@ -28,7 +28,7 @@ namespace ClubManagement.Pages
             var account = await _studentService.LoginAsync(email, studentCardId);
             if (account == null)
             {
-                TempData["error"] = "Account is not exist or wrong Student Card ID";
+                TempData["error"] = "Account is not exist or wrong password";
                 return Page();
             }
             if (account != null && email.Equals("admin@gmail.com"))

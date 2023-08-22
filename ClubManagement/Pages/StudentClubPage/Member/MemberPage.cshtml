@@ -1,0 +1,59 @@
+﻿@page
+@model MemberPageModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" asp-route-id="@Model.ClubId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:100px;text-align:center;">
+                @Html.DisplayNameFor(model => model.Membership[0].CardMemberUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Membership[0].Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Membership[0].JoinDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Membership[0].OutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Membership[0].Status)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Membership)
+        {
+            <tr>
+                <td style="width:100px;">
+                    <img src="@item.CardMemberUrl" style="width:90px;height:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student!.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JoinDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.MembershipId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

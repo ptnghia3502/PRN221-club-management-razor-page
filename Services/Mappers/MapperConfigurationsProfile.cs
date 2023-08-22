@@ -30,6 +30,7 @@ namespace ClubManagementServices.Mappers
 
             CreateMap<ClubBoardView, ClubBoard>().ReverseMap();
             CreateMap<ClubBoardCreateView,ClubBoard>().ReverseMap();
+            CreateMap<ClubBoardUpdateView, ClubBoard>().ReverseMap();
 
             CreateMap<MembershipView,Membership>().ReverseMap();
 
@@ -39,6 +40,16 @@ namespace ClubManagementServices.Mappers
                 .ForPath(x=>x.Student!.StudentName, op=>op.MapFrom(src=>src.StudentName))
                 .ReverseMap();
 
+            CreateMap<ClubActivityCreateView,ClubActivity>().ReverseMap();
+            CreateMap<ClubActivityUpdateView, ClubActivity>().ReverseMap();
+
+            CreateMap<Participant, ParticipantView>()
+                .ForMember(dest => dest.MemberName, act => act.Ignore())
+                .ForMember(dest => dest.ActivityName, act => act.Ignore())
+                .ReverseMap();
+
+            CreateMap<ParticipantCreateView,Participant>().ReverseMap();
+            CreateMap<ParticipantUpdateView,Participant>().ReverseMap();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ClubManagement.Pages.MemberPage
             _membershipService = membershipService;
         }
 
-      public MembershipView Membership { get; set; } = default!; 
+        public MembershipView Membership { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

@@ -23,9 +23,6 @@
                 @Html.DisplayNameFor(model => model.Membership[0].JoinDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Membership[0].OutDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Membership[0].Status)
             </th>
            
@@ -45,9 +42,6 @@
                 @Html.DisplayFor(modelItem => item.JoinDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OutDate)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
@@ -58,3 +52,4 @@
 }
     </tbody>
 </table>
+<a asp-page="/ClubPage/Details" asp-route-id="@Model.ClubId">Back to Activity</a>

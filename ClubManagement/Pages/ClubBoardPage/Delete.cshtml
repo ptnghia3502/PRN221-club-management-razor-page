@@ -24,29 +24,11 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ClubBoard.Status)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ClubBoard.Club)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClubBoard.Club.ClubId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ClubBoard.CreateAt)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClubBoard.CreateAt)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ClubBoard.IsDeleted)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClubBoard.IsDeleted)
-        </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="ClubBoard.ClubBoardId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="./Index" asp-route-id="@Model.ClubBoard.ClubId" >Back to List</a>
     </form>
 </div>

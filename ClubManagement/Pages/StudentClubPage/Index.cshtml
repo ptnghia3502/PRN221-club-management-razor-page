@@ -5,7 +5,7 @@
 }
 
 <h1>Clubs have been joined</h1>
-
+<label class="control-label"> @TempData["NOT_ALLOW"]</label>
 @if (Model.Memberships.Count > 0)
 {
     <table class="table">
@@ -31,8 +31,8 @@
                     <td>@membership.Club!.Description</td>
                     <td>@membership.Club!.Status</td>
                     <td>
-                        <a asp-page="./ViewMembersClub" asp-route-id="@membership.Club!.ClubId">View Members</a> |
-                        <a asp-page="./ViewActivityClub" asp-route-id="@membership.Club!.ClubId">View Activities</a>
+                        <a asp-page="./Member/MemberPage" asp-route-id="@membership.Club!.ClubId">View Members</a> |
+                        <a asp-page="/ClubActivityPage/Member/Index" asp-route-id="@membership.Club!.ClubId">View Activities</a>
                     </td>
                 </tr>
             }
@@ -43,3 +43,5 @@ else
 {
     <p>You have joined no clubs!</p>
 }
+
+<a asp-page="/StudentMainPage">Back To Main Page</a>

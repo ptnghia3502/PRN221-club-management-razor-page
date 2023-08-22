@@ -10,7 +10,7 @@ namespace ClubManagementRepositories.Models
             Participants = new HashSet<Participant>();
         }
 
-        public Guid ActivityId { get; set; }
+        public Guid ActivityId { get; set; }=Guid.NewGuid();
         public Guid? ClubId { get; set; }
         public string? ActivityName { get; set; }
         public string? Description { get; set; }
@@ -18,8 +18,7 @@ namespace ClubManagementRepositories.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string? Location { get; set; }
-        public string? Status { get; set; }
-        public DateTime? CreateAt { get; set; }
+        public string? Status { get; set; } = "UpComming";
         public virtual Club? Club { get; set; }
         public virtual ICollection<Participant> Participants { get; set; }
     }

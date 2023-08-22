@@ -14,7 +14,7 @@ namespace ClubManagementServices.Interfaces
         Task<bool> CreateStudent(StudentCreateView createDTO);
 
         Task<StudentUpdateView> GetUpdateInfor(Guid id);
-
+        Task<bool> Delete(Guid id);
         Task<bool> Update(StudentUpdateView updateDTO);
         Task<StudentView> LoginAsync(string email, string studentCardId);
 

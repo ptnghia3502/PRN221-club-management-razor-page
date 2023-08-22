@@ -24,11 +24,6 @@ namespace ClubManagementServices.Service
 
         public async Task<bool> AddMemberToClubBoard(MemberClubBoardCreateView createView)
         {
-            //var student = await _unitOfWork.StudentRepository.FindByField(x => x.Email == createView.Membership!.Student!.Email && x.IsDeleted == false);
-            //if (student == null)
-            //{
-            //    return false;
-            //}
 
             var memberClubBoard = new MemberClubBoard
             {
@@ -59,6 +54,20 @@ namespace ClubManagementServices.Service
             var members = await _unitOfWork.MembershipRepository.FindListByField(x => !listId.Contains(x.MembershipId) && x.IsDeleted==false,x=>x.Student!);
             var result = _mapper.Map<List<MemberOption>>(members);
             return result;
+        }
+
+        public async Task<List<string>> GetRoleOfMemberInClub(Guid studentId,Guid clubId)
+        {
+            var member= await _unitOfWork.MembershipRepository
+                .FindByField(x=>x.StudentId==studentId
+                             && x.IsDeleted==false
+                             && x.ClubId==clubId);
+            if (member == null)
+            {
+                return null;
+            }
+            var memberClub = await _unitOfWork.MembershipClubBoardRepository.FindListByField(x => x.MembershipId == member.MembershipId);
+            return memberClub!.Select(x=>x.Role!).ToList();
         }
     }
 }

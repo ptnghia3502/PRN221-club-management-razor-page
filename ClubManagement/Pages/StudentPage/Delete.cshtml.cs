@@ -44,6 +44,7 @@ namespace ClubManagement.Pages.StudentPage
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
+            await _studentService.Delete(id!.Value);
             return RedirectToPage("./Index");
         }
     }

@@ -27,28 +27,43 @@ namespace ClubManagementServices.Service
             return await _unitOfWork.SaveChangeAsync()>0;
         }
 
+        public async Task<bool> Delete(Guid id)
+        {
+            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == id&&x.IsDeleted==false);
+            clubBoard.IsDeleted=true;
+            _unitOfWork.ClubBoardRepository.Update(clubBoard);
+            return await _unitOfWork.SaveChangeAsync() >0;
+        }
+
         public async Task<List<ClubBoardView>> GetAllClubBoardByClubId(Guid clubId)
         {
-            var cluboards= await _unitOfWork.ClubBoardRepository.FindListByField(x=>x.ClubId==clubId);
+            var cluboards= await _unitOfWork.ClubBoardRepository.FindListByField(x=>x.ClubId==clubId && x.IsDeleted == false);
             var result= _mapper.Map<List<ClubBoardView>>(cluboards);
             return result;
         }
 
-        public Task<ClubBoardView> GetClubBoardByClubId(Guid id)
+        public  Task<ClubBoardView> GetClubBoardByClubId(Guid id)
         {
             throw new NotImplementedException();
         }
 
         public async Task<ClubBoardView> GetClubBoardById(Guid id)
         {
-            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == id);
+            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == id && x.IsDeleted == false);
             var result = _mapper.Map<ClubBoardView>(clubBoard);
+            return result;
+        }
+
+        public async Task<ClubBoardUpdateView> GetClubBoardUpdateById(Guid id)
+        {
+            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == id && x.IsDeleted == false);
+            var result = _mapper.Map<ClubBoardUpdateView>(clubBoard);
             return result;
         }
 
         public async Task<bool> UpdateClubBoard(ClubBoardUpdateView updateDTO)
         {
-            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == updateDTO.ClubBoardId);
+            var clubBoard = await _unitOfWork.ClubBoardRepository.FindByField(x => x.ClubBoardId == updateDTO.ClubBoardId && x.IsDeleted == false);
             if (clubBoard == null)
             {
                 return false;

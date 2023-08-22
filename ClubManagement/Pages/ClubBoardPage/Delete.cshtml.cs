@@ -6,35 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ClubManagementRepositories.Models;
+using ClubManagementServices.Interfaces;
+using ClubManagementServices.ViewModels;
 
 namespace ClubManagement.Pages.ClubBoardPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly ClubManagementRepositories.Models.ClubManagementContext _context;
+        private readonly IClubBoardService _clubBoardService;
 
-        public DeleteModel(ClubManagementRepositories.Models.ClubManagementContext context)
+        public DeleteModel(IClubBoardService clubBoardService, IMemberClubBoardService memberClubBoardService)
         {
-            _context = context;
+            _clubBoardService = clubBoardService;
         }
 
         [BindProperty]
-      public ClubBoard ClubBoard { get; set; } = default!;
+        public ClubBoardView ClubBoard { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.ClubBoards == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var clubboard = await _context.ClubBoards.FirstOrDefaultAsync(m => m.ClubBoardId == id);
-
+            var clubboard = await _clubBoardService.GetClubBoardById(id.Value);
             if (clubboard == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 ClubBoard = clubboard;
             }
@@ -43,20 +44,10 @@ namespace ClubManagement.Pages.ClubBoardPage
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (id == null || _context.ClubBoards == null)
-            {
-                return NotFound();
-            }
-            var clubboard = await _context.ClubBoards.FindAsync(id);
+            var clubboard = await _clubBoardService.GetClubBoardById(id!.Value);
 
-            if (clubboard != null)
-            {
-                ClubBoard = clubboard;
-                _context.ClubBoards.Remove(ClubBoard);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            await _clubBoardService.Delete(id!.Value);
+            return RedirectToPage("./Index", new {id=clubboard.ClubId});
         }
     }
 }

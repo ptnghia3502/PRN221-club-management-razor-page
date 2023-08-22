@@ -47,6 +47,14 @@ namespace ClubManagementServices.Service
             return await _unitOfWork.SaveChangeAsync()>0;
         }
 
+        public async Task<bool> Delete(Guid id)
+        {
+            var member = await _unitOfWork.MembershipRepository.FindByField(x => x.MembershipId == id && x.IsDeleted == false);
+            member.IsDeleted = true;
+            _unitOfWork.MembershipRepository.Update(member);
+            return await _unitOfWork.SaveChangeAsync()>0;
+        }
+
         public async Task<List<MembershipView>> GetAllClubsOfStudentHasJoined(Guid studentId)
         {
             var clubs = await _unitOfWork.MembershipRepository.FindListByField(x => x.IsDeleted == false && x.StudentId == studentId, x => x.Club!);
@@ -63,7 +71,7 @@ namespace ClubManagementServices.Service
 
         public async Task<MembershipView> GetMemberById(Guid membershipId)
         {
-            var member = await _unitOfWork.MembershipRepository.FindByField(x => x.MembershipId == membershipId, x => x.Student!);
+            var member = await _unitOfWork.MembershipRepository.FindByField(x => x.MembershipId == membershipId&&x.IsDeleted==false, x => x.Student!,x=>x.Club!);
             var result = _mapper.Map<MembershipView>(member);
             return result;
         }

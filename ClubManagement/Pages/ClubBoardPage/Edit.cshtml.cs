@@ -21,7 +21,7 @@ namespace ClubManagement.Pages.ClubBoardPage
         {
             _clubBoardService = clubBoardService;
         }
-
+        
         [BindProperty]
         public ClubBoardUpdateView ClubBoard { get; set; } = default!;
 
@@ -32,12 +32,12 @@ namespace ClubManagement.Pages.ClubBoardPage
                 return NotFound();
             }
 
-            var clubBoard = await _clubBoardService.GetClubBoardById(id.Value);
+            var clubBoard = await _clubBoardService.GetClubBoardUpdateById(id.Value);
             if (clubBoard == null)
             {
                 return NotFound();
             }
-
+            ClubBoard=clubBoard;
             return Page();
         }
 

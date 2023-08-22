@@ -290,6 +290,9 @@ namespace ClubManagementRepositories.Migrations
                     b.Property<Guid?>("MembershipId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ParticipantId");
 
                     b.HasIndex("ActivityId");

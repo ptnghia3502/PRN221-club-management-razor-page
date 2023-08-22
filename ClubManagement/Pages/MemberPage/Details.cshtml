@@ -24,12 +24,6 @@
             @Html.DisplayFor(model => model.Membership.JoinDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Membership.OutDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.OutDate)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Membership.Status)
         </dt>
         <dd class="col-sm-10">
@@ -39,11 +33,11 @@
             Member Name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Membership.Student.StudentName)
+            @Html.DisplayFor(model => model.Membership!.Student!.StudentName)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Membership?.MembershipId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index" asp-route-id="@Model.Membership?.Club?.ClubId">Back to List</a>
 </div>

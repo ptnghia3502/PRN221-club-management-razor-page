@@ -40,14 +40,14 @@ namespace ClubManagementServices.Service
 
         public async Task<List<StudentView>> GetAllStudents()
         {
-            var students= await _unitOfWork.StudentRepository.GetAllAsync(x=>x.Major!,x=>x.Grade!);
+            var students= await _unitOfWork.StudentRepository.FindListByField(x=>x.IsDeleted==false,x=>x.Major!,x=>x.Grade!);
             var result= _mapper.Map<List<StudentView>>(students);
             return result;
         }
 
         public async Task<StudentView> GetStudentById(Guid id)
         {
-            var student= await _unitOfWork.StudentRepository.FindByField(x=>x.StudentId==id,x=>x.Major!,x=>x.Grade!);
+            var student= await _unitOfWork.StudentRepository.FindByField(x=>x.StudentId == id && x.IsDeleted == false,x=>x.Major!,x=>x.Grade!);
             var result= _mapper.Map<StudentView>(student);
             return result;
         }
@@ -55,14 +55,14 @@ namespace ClubManagementServices.Service
         public async Task<StudentUpdateView> GetUpdateInfor(Guid id)
         {
 
-            var student = await _unitOfWork.StudentRepository.FindByField(x => x.StudentId == id, x => x.Major!, x => x.Grade!);
+            var student = await _unitOfWork.StudentRepository.FindByField(x => x.StudentId == id && x.IsDeleted == false, x => x.Major!, x => x.Grade!);
             var result = _mapper.Map<StudentUpdateView>(student);
             return result;
         }
 
         public async Task<bool> Update(StudentUpdateView updateDTO)
         {
-            var student = await _unitOfWork.StudentRepository.FindByField(x => x.StudentId == updateDTO.StudentId);
+            var student = await _unitOfWork.StudentRepository.FindByField(x => x.StudentId == updateDTO.StudentId && x.IsDeleted == false);
             string fileName = string.Empty;
             if (student == null)
             {
@@ -91,11 +91,18 @@ namespace ClubManagementServices.Service
         public async Task<StudentView> LoginAsync(string email, string studentCardId)
         {
             var student = await _unitOfWork.StudentRepository.FindByField(
-                    x => x.Email == email && x.StudentCardId == studentCardId);
+                    x => x.Email == email && x.StudentCardId == studentCardId && x.IsDeleted == false);
 
             var result = _mapper.Map<StudentView>(student);
             return result;
         }
 
+        public async Task<bool> Delete(Guid id)
+        {
+            var student = await _unitOfWork.StudentRepository.FindByField(x => x.StudentId == id&&x.IsDeleted==false);
+            student.IsDeleted = true;
+            _unitOfWork.StudentRepository.Update(student);
+            return await _unitOfWork.SaveChangeAsync()>0;
+        }
     }
 }

@@ -1,0 +1,56 @@
+﻿@page
+@model ClubManagement.Pages.ParticipantPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" asp-route-id="@Model.ActivityId" >Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Activity
+            </th>
+            <th>
+                Member
+            </th>
+            <th>
+                JoinedDate
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Participant) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ParticipantId" asp-route-activityId="@Model.ActivityId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ParticipantId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ParticipantId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<a asp-page="/ClubActivityPage/Admin/Details" asp-route-id="@Model.ActivityId">Back to Activity</a>
