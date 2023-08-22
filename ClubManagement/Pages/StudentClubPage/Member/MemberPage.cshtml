@@ -9,6 +9,8 @@
 <p>
     <a asp-page="Create" asp-route-id="@Model.ClubId">Create New</a>
 </p>
+
+<label class="control-label"> @TempData["NOT_ALLOW"]</label>
 <table class="table">
     <thead>
         <tr>
@@ -20,9 +22,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Membership[0].JoinDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Membership[0].OutDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Membership[0].Status)
@@ -45,9 +44,6 @@
                     @Html.DisplayFor(modelItem => item.JoinDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OutDate)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
@@ -57,3 +53,5 @@
         }
     </tbody>
 </table>
+
+<a asp-page="/StudentClubPage/Index">Back to Club List</a>

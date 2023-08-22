@@ -23,24 +23,9 @@ namespace ClubManagement.Pages.ClubActivityPage.Member
         public Guid ClubId { get; set; } = default;
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            var studentId = HttpContext.Session.GetString("studentId");
-            if (studentId == null)
-            {
-                return RedirectToPage("/StudentClubPage/Index", "OnGetAsync");
-            }
-
-            var listRole = await _memberClubBoardService.GetRoleOfMemberInClub(Guid.Parse(studentId), id);
-            if (listRole != null)
-            {
-                if (listRole.Contains("President") || listRole.Contains("Co-President"))
-                {
-                    ClubId = id;
-                    ClubActivity = await _clubActivityService.GetAllActivitiesByClubId(id);
-                    return Page();
-                }
-            }
-            TempData["NOT_ALLOW"] = "You don't have permission to access this!";
-            return RedirectToPage("/StudentClubPage/Index", "OnGetAsync");   
+            ClubId = id;
+            ClubActivity = await _clubActivityService.GetAllActivitiesByClubId(id);
+            return Page();
         }
     }
 }
